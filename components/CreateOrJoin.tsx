@@ -30,6 +30,7 @@ const CreateOrJoin = (props: any) => {
     { label: "10 players", value: 10 },
   ]);
   const [selectedNumOfPlayers, setSelectedNumOfPlayers] = useState<number>(0);
+  const [tempGameCode, setTempGameCode] = useState<string>("");
 
   const showErrorToast = () => {
     Toast.show({
@@ -70,6 +71,30 @@ const CreateOrJoin = (props: any) => {
     createGame();
   };
 
+  const handleJoinGame = () => {
+    const joinGame = () => {
+      try {
+        const joinGameAsync = async () => {
+          const response = await axios.get(
+            `${getBackendRootURL()}/secretHitler/join-game/${tempGameCode}/${playerName}/`
+          );
+          setStopPollBackend(false);
+          setGameCode(response.data.game_code);
+          setRole(response.data.role);
+          setParty(response.data.party);
+        };
+        joinGameAsync();
+        // redirect to another page
+        // setGameCode("1234");
+        showSuccessToast();
+      } catch (err) {
+        console.log("in the errors");
+        showErrorToast();
+      }
+    };
+    joinGame();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.topBox}>
@@ -91,12 +116,12 @@ const CreateOrJoin = (props: any) => {
             placeholder="Code"
             placeholderTextColor="#24527a"
             autoCapitalize="none"
-            onChangeText={(text) => setPlayerName(text)}
+            onChangeText={(text) => setTempGameCode(text)}
           />
           <TouchableOpacity
             style={styles.submitButtonJoin}
-            disabled={!gameCode}
-            // onPress={() => handleAddSleepeUserName()}
+            // disabled={!gameCode}
+            onPress={() => handleJoinGame()}
           >
             <Text style={styles.submitButtonText}>Join</Text>
           </TouchableOpacity>
