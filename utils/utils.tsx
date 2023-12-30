@@ -24,9 +24,7 @@ export const getNumOfFacists = (selectedNumOfPlayers: any) => {
   }
 };
 
-export const getBackendRootURL = () =>
-  "https://7338-2600-1700-d50-a2f0-1aa2-799c-343d-4dee.ngrok-free.app";
-// "http://172.104.194.142";
+export const getBackendRootURL = () => "http://172.104.194.142";
 // or ngrok
 export const pollBackend = (
   setStartedPollBackend,

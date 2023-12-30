@@ -221,6 +221,7 @@ export const getStyles = () => {
     imageCenter: {
       objectFit: "contain",
       width: "90%",
+      borderRadius: "15px",
     },
     imageBox: {
       flexDirection: "row",

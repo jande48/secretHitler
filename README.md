@@ -17,3 +17,11 @@ To make sure this works in the app store(s), you need to install,
 npm install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
 
 and import 'react-native-gesture-handler'; in every component
+
+
+for a new project, you need eas-cli
+npm install -g eas-cli
+eas login
+eas build:configure
+eas build --platform ios
+eas submit --platform ios
